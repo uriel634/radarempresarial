@@ -1,331 +1,421 @@
-import React, { useState, useEffect } from 'react';
-import { Activity, Target, TrendingUp, Users, DollarSign, BarChart3, CheckCircle, AlertTriangle, ArrowRight, Zap, Award } from 'lucide-react';
-
-export default function RadarEmpresarialLanding() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [radarScore, setRadarScore] = useState(0);
-
-  useEffect(() => {
-    setIsVisible(true);
-    const interval = setInterval(() => {
-      setRadarScore(prev => (prev >= 100 ? 0 : prev + 1));
-    }, 30);
-    return () => clearInterval(interval);
-  }, []);
-
-  const dimensions = [
-    { icon: DollarSign, title: 'Finanzas', desc: 'Control de flujo de caja y rentabilidad', color: 'text-emerald-500' },
-    { icon: Target, title: 'Estrategia', desc: 'Claridad de objetivos y planes de acción', color: 'text-sky-500' },
-    { icon: TrendingUp, title: 'Ventas', desc: 'Pipeline, conversión y crecimiento', color: 'text-purple-500' },
-    { icon: Users, title: 'Talento', desc: 'Equipo comprometido y productivo', color: 'text-orange-500' },
-    { icon: Activity, title: 'Operaciones', desc: 'Procesos eficientes y escalables', color: 'text-cyan-500' }
-  ];
-
-  const benefits = [
-    'Identifica fugas de dinero y recursos en tiempo real',
-    'Anticipa crisis antes de que impacten tu negocio',
-    'Toma decisiones basadas en datos, no en intuición',
-    'Aumenta tu rentabilidad entre 20-40% el primer año',
-    'Escala tu empresa sin perder el control',
-    'Duerme tranquilo sabiendo que todo está bajo control'
-  ];
-
-  const testimonials = [
-    { name: 'Carlos Mendoza', role: 'CEO, TechFlow', quote: 'Descubrimos que perdíamos $50K mensuales en procesos ineficientes. En 6 meses recuperamos el control total.', score: 92 },
-    { name: 'Ana Martínez', role: 'Directora General, Innova', quote: 'Pasamos de tener caos operativo a un sistema predecible. Nuestro equipo ahora sabe exactamente qué hacer.', score: 88 },
-    { name: 'Roberto Silva', role: 'Fundador, GrowthLab', quote: 'El Radar nos mostró que nuestro problema no era falta de ventas, sino falta de control financiero.', score: 95 }
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-sky-600/20 to-slate-800/20 blur-3xl"></div>
-        
-        <nav className="relative z-10 container mx-auto px-6 py-6 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <img 
-              src="https://drive.google.com/uc?export=view&id=1mVe6KbjYLZgzpTnkKYYdsDEiPQo_gXpU" 
-              alt="VESTRA Consultoría en Negocios" 
-              className="h-16 w-auto"
-            />
-          </div>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSchDQwc6dUWRuAp1lv2kjkS3V44noJzOc0INCVBQ8WCAMlKgg/formResponse" target="_blank" rel="noopener noreferrer" className="bg-sky-500 hover:bg-sky-600 px-6 py-2 rounded-lg font-semibold transition-all">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Empresarial - VESTRA Consultoría</title>
+    <meta name="description" content="Descubre tu nivel de control empresarial en 5 minutos con el Radar Empresarial de VESTRA">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+    
+    <!-- Navigation -->
+    <nav class="relative z-10 container mx-auto px-6 py-6 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <img src="logo-vestra.png" alt="VESTRA Consultoría en Negocios" class="h-16 w-auto">
+        </div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSchDQwc6dUWRuAp1lv2kjkS3V44noJzOc0INCVBQ8WCAMlKgg/formResponse" target="_blank" class="bg-sky-500 hover:bg-sky-600 px-6 py-2 rounded-lg font-semibold transition-all">
             Iniciar Pre-diagnóstico
-          </a>
-        </nav>
+        </a>
+    </nav>
 
-        <div className={`relative z-10 container mx-auto px-6 py-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-block bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-red-500/30">
-                <AlertTriangle className="w-4 h-4 inline mr-2" />
-                El 73% de las empresas quiebran por falta de control
-              </div>
-              
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                ¿Realmente sabes qué está pasando en tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-slate-300">empresa?</span>
-              </h1>
-              
-              <p className="text-xl text-slate-300 mb-8">
-                Descubre tu nivel de control empresarial en 5 minutos. El Radar Empresarial es un pre-diagnóstico que analiza las 5 dimensiones críticas que determinan el éxito o fracaso de tu negocio.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSchDQwc6dUWRuAp1lv2kjkS3V44noJzOc0INCVBQ8WCAMlKgg/formResponse" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-sky-500 to-slate-700 hover:from-sky-600 hover:to-slate-800 px-8 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 flex items-center justify-center">
-                  Evaluar mi Empresa Ahora
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
-                <button className="border-2 border-slate-600 hover:border-sky-500 px-8 py-4 rounded-lg font-semibold transition-all">
-                  Ver Demo
-                </button>
-              </div>
-
-              <div className="flex items-center space-x-8 text-sm text-slate-400">
-                <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  Sin tarjeta de crédito
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                  Resultados inmediatos
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-sky-500/30 to-slate-500/30 blur-3xl animate-pulse"></div>
-              <div className="relative bg-slate-800/50 backdrop-blur-xl border border-slate-700 rounded-2xl p-8">
-                <div className="text-center mb-6">
-                  <div className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-slate-300">
-                    {radarScore}%
-                  </div>
-                  <div className="text-slate-400 mt-2">Nivel de Control Promedio</div>
-                </div>
-                
-                <div className="space-y-4">
-                  {dimensions.map((dim, idx) => (
-                    <div key={idx} className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <dim.icon className={`w-5 h-5 ${dim.color}`} />
-                        <span className="text-sm">{dim.title}</span>
-                      </div>
-                      <div className="w-32 bg-slate-700 rounded-full h-2">
-                        <div 
-                          className={`h-2 rounded-full bg-gradient-to-r from-sky-500 to-slate-500 transition-all duration-1000`}
-                          style={{ width: `${Math.min(radarScore + (idx * 5), 100)}%` }}
-                        ></div>
-                      </div>
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-sky-600/20 to-slate-800/20 blur-3xl"></div>
+        
+        <div class="relative z-10 container mx-auto px-6 py-20 fade-in">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-red-500/30">
+                        ⚠️ El 73% de las empresas quiebran por falta de control
                     </div>
-                  ))}
-                </div>
+                    
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        ¿Realmente sabes qué está pasando en tu <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-slate-300">empresa?</span>
+                    </h1>
+                    
+                    <p class="text-xl text-slate-300 mb-8">
+                        Descubre tu nivel de control empresarial en 5 minutos. El Radar Empresarial es un pre-diagnóstico que analiza las 5 dimensiones críticas que determinan el éxito o fracaso de tu negocio.
+                    </p>
 
-                <div className="mt-6 pt-6 border-t border-slate-700 text-center">
-                  <Zap className="w-6 h-6 text-yellow-500 inline mb-2" />
-                  <p className="text-sm text-slate-400">Empresas con +85% de control crecen <span className="text-green-400 font-bold">3x más rápido</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Sección de Experto - Uriel Vargas */}
-      <div className="bg-gradient-to-r from-slate-900 to-slate-800 py-20 border-y border-slate-700">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <div className="absolute inset-0 bg-sky-500/20 blur-3xl rounded-full"></div>
-              <div className="relative bg-white rounded-2xl p-2 shadow-2xl">
-                <img 
-                  src="https://drive.google.com/uc?export=view&id=1yFJ6Vgf9UPN3uE8WtBhsdLLjvcnU9zkl" 
-                  alt="Uriel Vargas Ch." 
-                  className="w-full h-auto rounded-xl"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-sky-500 text-white p-4 rounded-xl shadow-lg">
-                <Award className="w-8 h-8 mb-2" />
-                <div className="text-sm font-bold">+15 años</div>
-                <div className="text-xs">de experiencia</div>
-              </div>
-            </div>
-
-            <div>
-              <div className="inline-block bg-sky-500/20 text-sky-400 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                Experto en Control Empresarial
-              </div>
-              
-              <h2 className="text-4xl font-bold mb-6">
-                Uriel Vargas Ch.
-              </h2>
-              
-              <p className="text-sky-400 text-xl font-semibold mb-6">
-                Socio Fundador de VESTRA Consultoría en Negocios
-              </p>
-
-              <div className="space-y-4 text-slate-300 mb-8">
-                <p className="text-lg leading-relaxed">
-                  En VESTRA contamos con más de <span className="text-sky-400 font-bold">15 años de experiencia</span> en consultoría de negocios, ayudando a empresarios a recuperar el control de sus operaciones. La mayoría de los empresarios pierden dinero simplemente porque no tienen visibilidad de lo que realmente está pasando.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  El Radar Empresarial es un <span className="text-sky-400 font-bold">pre-diagnóstico gratuito</span> que identifica las áreas críticas donde tu empresa necesita mayor control. Con esta información, puedes tomar decisiones informadas sobre el siguiente paso para tu negocio.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-3 gap-4 mb-8">
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-center">
-                  <div className="text-3xl font-bold text-sky-400">15+</div>
-                  <div className="text-xs text-slate-400 mt-1">Años de experiencia</div>
-                </div>
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-center">
-                  <div className="text-3xl font-bold text-sky-400">5 Min</div>
-                  <div className="text-xs text-slate-400 mt-1">Pre-diagnóstico rápido</div>
-                </div>
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-center">
-                  <div className="text-3xl font-bold text-sky-400">100%</div>
-                  <div className="text-xs text-slate-400 mt-1">Gratuito</div>
-                </div>
-              </div>
-
-              <blockquote className="border-l-4 border-sky-500 pl-4 italic text-slate-300">
-                "No puedes mejorar lo que no mides. El primer paso para recuperar el control es saber exactamente dónde estás parado."
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Dimensiones Section */}
-      <div className="bg-slate-900/50 py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Las 5 Dimensiones del Control Empresarial</h2>
-            <p className="text-xl text-slate-400">Cada dimensión se evalúa con 20+ indicadores clave de desempeño</p>
-          </div>
-
-          <div className="grid md:grid-cols-5 gap-6">
-            {dimensions.map((dim, idx) => (
-              <div key={idx} className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6 hover:border-sky-500 transition-all hover:-translate-y-2 cursor-pointer group">
-                <div className={`${dim.color} mb-4 group-hover:scale-110 transition-transform`}>
-                  <dim.icon className="w-12 h-12" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">{dim.title}</h3>
-                <p className="text-slate-400 text-sm">{dim.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Problemas Section */}
-      <div className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold mb-6">¿Te identificas con esto?</h2>
-              <div className="space-y-4">
-                {[
-                  'No sabes exactamente cuánto dinero entra y sale cada mes',
-                  'Tus empleados no saben cuáles son las prioridades reales',
-                  'Cada vez trabajas más pero ganas menos',
-                  'Las crisis te toman por sorpresa constantemente',
-                  'No puedes irte de vacaciones sin que todo se desmorone',
-                  'Sientes que estás apagando incendios todo el tiempo'
-                ].map((problem, idx) => (
-                  <div key={idx} className="flex items-start space-x-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
-                    <AlertTriangle className="w-5 h-5 text-red-500 flex-shrink-0 mt-1" />
-                    <span className="text-slate-300">{problem}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-sky-600 to-slate-700 rounded-2xl p-8">
-              <h3 className="text-3xl font-bold mb-4">La buena noticia:</h3>
-              <p className="text-lg mb-6">El problema no es tu negocio. Es la falta de visibilidad y control sistemático.</p>
-              
-              <div className="bg-white/10 backdrop-blur rounded-xl p-6 mb-6">
-                <h4 className="text-xl font-bold mb-4">Con el Radar Empresarial obtienes:</h4>
-                <div className="space-y-3">
-                  {benefits.map((benefit, idx) => (
-                    <div key={idx} className="flex items-start space-x-3">
-                      <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-1" />
-                      <span>{benefit}</span>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSchDQwc6dUWRuAp1lv2kjkS3V44noJzOc0INCVBQ8WCAMlKgg/formResponse" target="_blank" class="bg-gradient-to-r from-sky-500 to-slate-700 hover:from-sky-600 hover:to-slate-800 px-8 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 flex items-center justify-center">
+                            Evaluar mi Empresa Ahora →
+                        </a>
+                        <button class="border-2 border-slate-600 hover:border-sky-500 px-8 py-4 rounded-lg font-semibold transition-all">
+                            Ver Demo
+                        </button>
                     </div>
-                  ))}
+
+                    <div class="flex items-center space-x-8 text-sm text-slate-400">
+                        <div class="flex items-center">
+                            ✓ Sin tarjeta de crédito
+                        </div>
+                        <div class="flex items-center">
+                            ✓ Resultados inmediatos
+                        </div>
+                    </div>
                 </div>
-              </div>
 
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSchDQwc6dUWRuAp1lv2kjkS3V44noJzOc0INCVBQ8WCAMlKgg/formResponse" target="_blank" rel="noopener noreferrer" className="w-full bg-white text-sky-600 hover:bg-slate-100 px-8 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 inline-block text-center">
-                Quiero mi Pre-diagnóstico Gratuito
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-sky-500/30 to-slate-500/30 blur-3xl animate-pulse"></div>
+                    <div class="relative bg-slate-800/50 backdrop-blur-xl border border-slate-700 rounded-2xl p-8">
+                        <div class="text-center mb-6">
+                            <div class="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-slate-300" id="score">
+                                72%
+                            </div>
+                            <div class="text-slate-400 mt-2">Nivel de Control Promedio</div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <span>💰</span>
+                                    <span class="text-sm">Finanzas</span>
+                                </div>
+                                <div class="w-32 bg-slate-700 rounded-full h-2">
+                                    <div class="h-2 rounded-full bg-gradient-to-r from-emerald-500 to-sky-500 w-3/4"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <span>🎯</span>
+                                    <span class="text-sm">Estrategia</span>
+                                </div>
+                                <div class="w-32 bg-slate-700 rounded-full h-2">
+                                    <div class="h-2 rounded-full bg-gradient-to-r from-sky-500 to-slate-500 w-2/3"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <span>📈</span>
+                                    <span class="text-sm">Ventas</span>
+                                </div>
+                                <div class="w-32 bg-slate-700 rounded-full h-2">
+                                    <div class="h-2 rounded-full bg-gradient-to-r from-purple-500 to-sky-500 w-4/5"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <span>👥</span>
+                                    <span class="text-sm">Talento</span>
+                                </div>
+                                <div class="w-32 bg-slate-700 rounded-full h-2">
+                                    <div class="h-2 rounded-full bg-gradient-to-r from-orange-500 to-sky-500 w-1/2"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <span>⚙️</span>
+                                    <span class="text-sm">Operaciones</span>
+                                </div>
+                                <div class="w-32 bg-slate-700 rounded-full h-2">
+                                    <div class="h-2 rounded-full bg-gradient-to-r from-cyan-500 to-sky-500 w-3/5"></div>
+                                </div>
+                            </div>
+                        </div>
 
-      {/* Testimonios */}
-      <div className="bg-slate-900/50 py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16">Empresarios que recuperaron el control</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((test, idx) => (
-              <div key={idx} className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6 hover:border-sky-500 transition-all">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-2">
-                    <BarChart3 className="w-5 h-5 text-sky-500" />
-                    <span className="text-2xl font-bold text-green-400">{test.score}%</span>
-                  </div>
-                  <span className="text-sm text-slate-500">Nivel de Control</span>
+                        <div class="mt-6 pt-6 border-t border-slate-700 text-center">
+                            <span class="text-2xl">⚡</span>
+                            <p class="text-sm text-slate-400 mt-2">Empresas con +85% de control crecen <span class="text-green-400 font-bold">3x más rápido</span></p>
+                        </div>
+                    </div>
                 </div>
-                
-                <p className="text-slate-300 mb-6 italic">"{test.quote}"</p>
-                
-                <div className="border-t border-slate-700 pt-4">
-                  <div className="font-semibold">{test.name}</div>
-                  <div className="text-sm text-slate-400">{test.role}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Final */}
-      <div className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="bg-gradient-to-r from-sky-600 to-slate-700 rounded-2xl p-12 text-center">
-            <h2 className="text-4xl font-bold mb-4">¿Listo para tomar el control de tu empresa?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">Completa el pre-diagnóstico ahora y recibe tu Score de Control Empresarial + un plan de acción personalizado</p>
-            
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSchDQwc6dUWRuAp1lv2kjkS3V44noJzOc0INCVBQ8WCAMlKgg/formResponse" target="_blank" rel="noopener noreferrer" className="bg-white text-sky-600 hover:bg-slate-100 px-12 py-5 rounded-lg font-bold text-xl transition-all transform hover:scale-105 inline-flex items-center">
-              Iniciar mi Pre-diagnóstico Empresarial
-              <ArrowRight className="ml-3 w-6 h-6" />
-            </a>
-
-            <div className="mt-8 text-sm text-sky-100">
-              ⚡ Más de 5,000 empresas han mejorado su control con nuestro sistema
             </div>
-          </div>
         </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="border-t border-slate-800 py-8">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <img 
-                src="https://drive.google.com/uc?export=view&id=1mVe6KbjYLZgzpTnkKYYdsDEiPQo_gXpU" 
-                alt="VESTRA Consultoría en Negocios" 
-                className="h-12 w-auto"
-              />
-            </div>
-            <p className="text-slate-500 text-center">© 2025 VESTRA Consultoría en Negocios. Todos los derechos reservados.</p>
-          </div>
-        </div>
-      </footer>
     </div>
-  );
-}
+
+    <!-- Sección de Experto -->
+    <div class="bg-gradient-to-r from-slate-900 to-slate-800 py-20 border-y border-slate-700">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-sky-500/20 blur-3xl rounded-full"></div>
+                    <div class="relative bg-white rounded-2xl p-2 shadow-2xl">
+                        <img src="uriel-vargas.jpg" alt="Uriel Vargas Ch." class="w-full h-auto rounded-xl">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-sky-500 text-white p-4 rounded-xl shadow-lg">
+                        <div class="text-3xl mb-2">🏆</div>
+                        <div class="text-sm font-bold">+15 años</div>
+                        <div class="text-xs">de experiencia</div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="inline-block bg-sky-500/20 text-sky-400 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        Experto en Control Empresarial
+                    </div>
+                    
+                    <h2 class="text-4xl font-bold mb-6">Uriel Vargas Ch.</h2>
+                    
+                    <p class="text-sky-400 text-xl font-semibold mb-6">
+                        Socio Fundador de VESTRA Consultoría en Negocios
+                    </p>
+
+                    <div class="space-y-4 text-slate-300 mb-8">
+                        <p class="text-lg leading-relaxed">
+                            En VESTRA contamos con más de <span class="text-sky-400 font-bold">15 años de experiencia</span> en consultoría de negocios, ayudando a empresarios a recuperar el control de sus operaciones. La mayoría de los empresarios pierden dinero simplemente porque no tienen visibilidad de lo que realmente está pasando.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            El Radar Empresarial es un <span class="text-sky-400 font-bold">pre-diagnóstico gratuito</span> que identifica las áreas críticas donde tu empresa necesita mayor control. Con esta información, puedes tomar decisiones informadas sobre el siguiente paso para tu negocio.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 mb-8">
+                        <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold text-sky-400">15+</div>
+                            <div class="text-xs text-slate-400 mt-1">Años de experiencia</div>
+                        </div>
+                        <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold text-sky-400">5 Min</div>
+                            <div class="text-xs text-slate-400 mt-1">Pre-diagnóstico rápido</div>
+                        </div>
+                        <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold text-sky-400">100%</div>
+                            <div class="text-xs text-slate-400 mt-1">Gratuito</div>
+                        </div>
+                    </div>
+
+                    <blockquote class="border-l-4 border-sky-500 pl-4 italic text-slate-300">
+                        "No puedes mejorar lo que no mides. El primer paso para recuperar el control es saber exactamente dónde estás parado."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dimensiones -->
+    <div class="bg-slate-900/50 py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Las 5 Dimensiones del Control Empresarial</h2>
+                <p class="text-xl text-slate-400">Cada dimensión se evalúa con 20+ indicadores clave de desempeño</p>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-6">
+                <div class="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6 hover:border-sky-500 transition-all hover:-translate-y-2 cursor-pointer group">
+                    <div class="text-emerald-500 text-5xl mb-4 group-hover:scale-110 transition-transform">💰</div>
+                    <h3 class="text-xl font-bold mb-2">Finanzas</h3>
+                    <p class="text-slate-400 text-sm">Control de flujo de caja y rentabilidad</p>
+                </div>
+                <div class="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6 hover:border-sky-500 transition-all hover:-translate-y-2 cursor-pointer group">
+                    <div class="text-sky-500 text-5xl mb-4 group-hover:scale-110 transition-transform">🎯</div>
+                    <h3 class="text-xl font-bold mb-2">Estrategia</h3>
+                    <p class="text-slate-400 text-sm">Claridad de objetivos y planes de acción</p>
+                </div>
+                <div class="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6 hover:border-sky-500 transition-all hover:-translate-y-2 cursor-pointer group">
+                    <div class="text-purple-500 text-5xl mb-4 group-hover:scale-110 transition-transform">📈</div>
+                    <h3 class="text-xl font-bold mb-2">Ventas</h3>
+                    <p class="text-slate-400 text-sm">Pipeline, conversión y crecimiento</p>
+                </div>
+                <div class="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6 hover:border-sky-500 transition-all hover:-translate-y-2 cursor-pointer group">
+                    <div class="text-orange-500 text-5xl mb-4 group-hover:scale-110 transition-transform">👥</div>
+                    <h3 class="text-xl font-bold mb-2">Talento</h3>
+                    <p class="text-slate-400 text-sm">Equipo comprometido y productivo</p>
+                </div>
+                <div class="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6 hover:border-sky-500 transition-all hover:-translate-y-2 cursor-pointer group">
+                    <div class="text-cyan-500 text-5xl mb-4 group-hover:scale-110 transition-transform">⚙️</div>
+                    <h3 class="text-xl font-bold mb-2">Operaciones</h3>
+                    <p class="text-slate-400 text-sm">Procesos eficientes y escalables</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Problemas -->
+    <div class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">¿Te identificas con esto?</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                            <span class="text-red-500 text-xl">⚠️</span>
+                            <span class="text-slate-300">No sabes exactamente cuánto dinero entra y sale cada mes</span>
+                        </div>
+                        <div class="flex items-start space-x-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                            <span class="text-red-500 text-xl">⚠️</span>
+                            <span class="text-slate-300">Tus empleados no saben cuáles son las prioridades reales</span>
+                        </div>
+                        <div class="flex items-start space-x-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                            <span class="text-red-500 text-xl">⚠️</span>
+                            <span class="text-slate-300">Cada vez trabajas más pero ganas menos</span>
+                        </div>
+                        <div class="flex items-start space-x-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                            <span class="text-red-500 text-xl">⚠️</span>
+                            <span class="text-slate-300">Las crisis te toman por sorpresa constantemente</span>
+                        </div>
+                        <div class="flex items-start space-x-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                            <span class="text-red-500 text-xl">⚠️</span>
+                            <span class="text-slate-300">No puedes irte de vacaciones sin que todo se desmorone</span>
+                        </div>
+                        <div class="flex items-start space-x-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                            <span class="text-red-500 text-xl">⚠️</span>
+                            <span class="text-slate-300">Sientes que estás apagando incendios todo el tiempo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-sky-600 to-slate-700 rounded-2xl p-8">
+                    <h3 class="text-3xl font-bold mb-4">La buena noticia:</h3>
+                    <p class="text-lg mb-6">El problema no es tu negocio. Es la falta de visibilidad y control sistemático.</p>
+                    
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6 mb-6">
+                        <h4 class="text-xl font-bold mb-4">Con el Radar Empresarial obtienes:</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <span class="text-green-400 text-xl">✓</span>
+                                <span>Identifica fugas de dinero y recursos en tiempo real</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="text-green-400 text-xl">✓</span>
+                                <span>Anticipa crisis antes de que impacten tu negocio</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="text-green-400 text-xl">✓</span>
+                                <span>Toma decisiones basadas en datos, no en intuición</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="text-green-400 text-xl">✓</span>
+                                <span>Aumenta tu rentabilidad entre 20-40% el primer año</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="text-green-400 text-xl">✓</span>
+                                <span>Escala tu empresa sin perder el control</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <span class="text-green-400 text-xl">✓</span>
+                                <span>Duerme tranquilo sabiendo que todo está bajo control</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSchDQwc6dUWRuAp1lv2kjkS3V44noJzOc0INCVBQ8WCAMlKgg/formResponse" target="_blank" class="w-full bg-white text-sky-600 hover:bg-slate-100 px-8 py-4 rounded-lg font-bold text-lg transition-all transform hover:scale-105 inline-block text-center">
+                        Quiero mi Pre-diagnóstico Gratuito
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonios -->
+    <div class="bg-slate-900/50 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Empresarios que recuperaron el control</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6 hover:border-sky-500 transition-all">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sky-500 text-xl">📊</span>
+                            <span class="text-2xl font-bold text-green-400">92%</span>
+                        </div>
+                        <span class="text-sm text-slate-500">Nivel de Control</span>
+                    </div>
+                    
+                    <p class="text-slate-300 mb-6 italic">"Descubrimos que perdíamos $50K mensuales en procesos ineficientes. En 6 meses recuperamos el control total."</p>
+                    
+                    <div class="border-t border-slate-700 pt-4">
+                        <div class="font-semibold">Carlos Mendoza</div>
+                        <div class="text-sm text-slate-400">CEO, TechFlow</div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6 hover:border-sky-500 transition-all">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sky-500 text-xl">📊</span>
+                            <span class="text-2xl font-bold text-green-400">88%</span>
+                        </div>
+                        <span class="text-sm text-slate-500">Nivel de Control</span>
+                    </div>
+                    
+                    <p class="text-slate-300 mb-6 italic">"Pasamos de tener caos operativo a un sistema predecible. Nuestro equipo ahora sabe exactamente qué hacer."</p>
+                    
+                    <div class="border-t border-slate-700 pt-4">
+                        <div class="font-semibold">Ana Martínez</div>
+                        <div class="text-sm text-slate-400">Directora General, Innova</div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-6 hover:border-sky-500 transition-all">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sky-500 text-xl">📊</span>
+                            <span class="text-2xl font-bold text-green-400">95%</span>
+                        </div>
+                        <span class="text-sm text-slate-500">Nivel de Control</span>
+                    </div>
+                    
+                    <p class="text-slate-300 mb-6 italic">"El Radar nos mostró que nuestro problema no era falta de ventas, sino falta de control financiero."</p>
+                    
+                    <div class="border-t border-slate-700 pt-4">
+                        <div class="font-semibold">Roberto Silva</div>
+                        <div class="text-sm text-slate-400">Fundador, GrowthLab</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Final -->
+    <div class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="bg-gradient-to-r from-sky-600 to-slate-700 rounded-2xl p-12 text-center">
+                <h2 class="text-4xl font-bold mb-4">¿Listo para tomar el control de tu empresa?</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">Completa el pre-diagnóstico ahora y recibe tu Score de Control Empresarial + un plan de acción personalizado</p>
+                
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSchDQwc6dUWRuAp1lv2kjkS3V44noJzOc0INCVBQ8WCAMlKgg/formResponse" target="_blank" class="bg-white text-sky-600 hover:bg-slate-100 px-12 py-5 rounded-lg font-bold text-xl transition-all transform hover:scale-105 inline-flex items-center">
+                    Iniciar mi Pre-diagnóstico Empresarial →
+                </a>
+
+                <div class="mt-8 text-sm text-sky-100">
+                    ⚡ Más de 5,000 empresas han mejorado su control con nuestro sistema
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <img src="logo-vestra.png" alt="VESTRA Consultoría en Negocios" class="h-12 w-auto">
+                </div>
+                <p class="text-slate-500 text-center">© 2025 VESTRA Consultoría en Negocios. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animación del score
+        let score = 0;
+        const scoreElement = document.getElementById('score');
+        const interval = setInterval(() => {
+            score++;
+            scoreElement.textContent = score + '%';
+            if (score >= 72) {
+                clearInterval(interval);
+            }
+        }, 20);
+    </script>
+
+</body>
+</html>
